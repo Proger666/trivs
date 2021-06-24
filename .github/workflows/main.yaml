@@ -23,7 +23,7 @@ jobs:
           docker save vulnerables/web-dvwa -o dvwa.tar
       - name: Run Trivy vulnerability scanner
         run: |
-          docker pull aquasecurity/trivy-action@master
-          docker run -v=&(pwd):/tmp/ aquasecurity/trivy-action image --input /tmp/dvwa.tar
+          docker pull docker pull aquasec/trivy:0.18.3
+          docker run -v=$(pwd):/tmp/ aquasec/trivy:0.18.3  /tmp/dvwa.tar
 
 
