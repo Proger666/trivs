@@ -24,6 +24,13 @@ jobs:
       - name: Run Trivy vulnerability scanner
         run: |
           docker pull aquasec/trivy:0.18.3
-          docker run -v=$(pwd):/tmp/ aquasec/trivy:0.18.3  /tmp/dvwa.tar
+          docker run -v=$(pwd):/root/.cache aquasec/trivy:0.18.3 image  --exit-code 1 --severity CRITICAL --input  /root/.cache/dvwa.tar
+          exit_code=&?
+          if []; then
+            echo "Vulnerable image!"
+            exit 1;
+          else
+            echo "Image looks good"
+          fi;
 
 
