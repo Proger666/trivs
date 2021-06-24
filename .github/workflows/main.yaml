@@ -25,13 +25,12 @@ jobs:
         run: |
           docker pull aquasec/trivy:0.18.3
           docker run -v=$(pwd):/root/.cache aquasec/trivy:0.18.3 image  --exit-code 1 --severity CRITICAL --input  /root/.cache/dvwa.tar
-          exit_code=&?
-          if []; then
-            echo "Vulnerable image!"
-            exit 0;
-          else
-            echo "Image looks good"
-            exit 1;
-          fi;
+      - if: failure()
+        run: |
+          echo "Image is bad"
+      - if: success()
+        run: |
+          echo "Image is good!"
+
 
 
