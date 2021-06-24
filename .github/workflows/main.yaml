@@ -24,6 +24,6 @@ jobs:
       - name: Run Trivy vulnerability scanner
         run: |
           docker pull aquasecurity/trivy-action@master
-          docker run -v=&(pwd):/tmp/ aquasecurity/trivy-action trivy image --input /tmp/dvwa.tar
+          docker run -v=&(pwd):/tmp/ aquasecurity/trivy-action image --input /tmp/dvwa.tar
 
 
