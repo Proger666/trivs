@@ -13,7 +13,6 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   Image_Scanner:
     runs-on: ubuntu-latest
     steps:
@@ -23,12 +22,8 @@ jobs:
           docker pull vulnerables/web-dvwa
           docker save vulnerables/web-dvwa -o dvwa.tar
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: '/tmp/dvwa.tar'
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+        run: |
+          docker pull aquasecurity/trivy-action@master
+          docker run -v=&(pwd):/tmp/ aquasecurity/trivy-action trivy image --input /tmp/dvwa.tar
+
 
