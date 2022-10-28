@@ -34,7 +34,7 @@ jobs:
       # Scan the test Image
       - name: Run the scanner 
         run: |
-          docker run -e SCALOCK_LOG_LEVEL=DEBUG -e BUILD_JOB_NAME=FRUIT_BANK -e BUILD_NUMBER=${{ github.run_id }} -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:2022.4 scan --host https://225fccbcb7.cloud.aquasec.com/ --local vulnerables/web-dvwa:latest --checkonly --no-verify --html --token -token dff831f47f675448e6adc97bba25a8befe9f6cc3 
+          docker run -e SCALOCK_LOG_LEVEL=DEBUG -e BUILD_JOB_NAME=FRUIT_BANK -e BUILD_NUMBER=${{ github.run_id }} -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:2022.4 scan --host https://225fccbcb7.cloud.aquasec.com/ --local vulnerables/web-dvwa:latest --checkonly --no-verify --html --token dff831f47f675448e6adc97bba25a8befe9f6cc3 
 
 
 
